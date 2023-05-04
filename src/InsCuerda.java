@@ -13,24 +13,12 @@ public class InsCuerda extends Instrumento{
     public String getTipoCuerda() {
         return tipoCuerda;
     }
-
-    public void setTipoCuerda(String tipoCuerda) {
-        this.tipoCuerda = tipoCuerda;
-    }
-
     public int getNumeroCuerda() {
         return numeroCuerda;
-    }
-
-    public void setNumeroCuerda(int numeroCuerda) {
-        this.numeroCuerda = numeroCuerda;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 }

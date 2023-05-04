@@ -10,7 +10,6 @@ public class ListaInstrumento {
 
     public Instrumento buscar(String codigo) {
         for (int i = 0; i < cantInstrumento; i++) {
-            System.out.println("codigo en buscar:" + codigo +" codigo instrumento[i] buscar"+ instrumentos[i].getCodigo());
             if (instrumentos[i].getCodigo().trim().equalsIgnoreCase(codigo.trim())) {
                 return instrumentos[i];
             }
@@ -18,39 +17,38 @@ public class ListaInstrumento {
         return null;
     }
     public void vender(String[] codigosVenta, int contadorVenta) {
-        System.out.println("----------------------------------");
-        System.out.println("BOLETA ELECTRÓNICA BEAT THE RHYTHM");
-        System.out.println("----------------------------------");
+        boolean imprimirBoleta = false;
+        int totalVenta = 0;
+        String boleta = ("----------------------------------\n");
+        boleta += ("BOLETA ELECTRÓNICA BEAT THE RHYTHM\n");
+        boleta += ("----------------------------------\n");
         for (int i = 0; i < contadorVenta; i++) {
-            System.out.println("codigoVenta en i; "+codigosVenta[i]);
             Instrumento instrumento = buscar(codigosVenta[i]);
-            if (instrumento != null) {
+            if (instrumento != null && instrumento.getStock() >= 1) {
                 instrumento.setStock(instrumento.getStock() - 1);
-                System.out.println("Código del instrumento: " + instrumento.getCodigo());
-                System.out.println("Instrumento: " + instrumento.getInstrumento());
-                System.out.println("Precio del instrumento: " + instrumento.getPrecio());
+                totalVenta += instrumento.getPrecio();
+                boleta += ("Código del instrumento: " + instrumento.getCodigo()+"\n");
+                boleta += ("Instrumento: " + instrumento.getInstrumento()+"\n");
+                boleta += ("Precio del instrumento: " + instrumento.getPrecio()+"\n");
+                boleta += ("----------------------------------\n");
+                imprimirBoleta = true;
             } else {
-                System.out.println("No se encontró el instrumento con código: " + codigosVenta[i]);
+                if(instrumento.getStock()==0){
+                    System.out.println("No hay stock del instrumento");
+                }else{
+                    System.out.println("Codigo invalido");
+                }
             }
+        }if(imprimirBoleta == true) {
+            boleta += ("total: $"+ totalVenta +"\n");
+            boleta += ("----------------------------------\n");
+            System.out.println(boleta);
+        }else{
+            System.out.println("No se vendieron instrumentos");
         }
-        System.out.println("-----------------------------------");
     }
 
-    public void imprimirInstrumentos() {
-        for (int i = 0; i < cantInstrumento; i++) {
-            Instrumento instrumento = instrumentos[i];
-            if (instrumento != null) {
-                System.out.println(instrumento.getStock());
-            }
-        }
-    }
 
-    public void imprimirBoleta(String codigo){
-        Instrumento instrumento = buscar(codigo);
-    }
-    public boolean estaVacia(){
-        return this.cantInstrumento == 0;
-    }
     public void añadirInsCuerda(InsCuerda insCuerda) {
         if (cantInstrumento < cantMax) {
             instrumentos[cantInstrumento] = insCuerda;
@@ -78,28 +76,8 @@ public class ListaInstrumento {
         }
     }
 
-
     public Instrumento[] getInstrumentos() {
         return instrumentos;
     }
 
-    public void setInstrumentos(Instrumento[] instrumentos) {
-        this.instrumentos = instrumentos;
-    }
-
-    public int getCantInstrumento() {
-        return cantInstrumento;
-    }
-
-    public void setCantInstrumento(int cantInstrumento) {
-        this.cantInstrumento = cantInstrumento;
-    }
-
-    public int getCantMax() {
-        return cantMax;
-    }
-
-    public void setCantMax(int cantMax) {
-        this.cantMax = cantMax;
-    }
 }

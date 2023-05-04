@@ -17,10 +17,6 @@ public class Instrumento {
         return material;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
     public int getStock() {
         return stock;
     }
@@ -33,23 +29,11 @@ public class Instrumento {
         return instrumento;
     }
 
-    public void setInstrumento(String instrumento) {
-        this.instrumento = instrumento;
-    }
-
     public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
     public String getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 }

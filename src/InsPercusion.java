@@ -12,15 +12,8 @@ public class InsPercusion extends Instrumento{
         return tipoPercusion;
     }
 
-    public void setTipoPercusion(String tipoPercusion) {
-        this.tipoPercusion = tipoPercusion;
-    }
-
     public String getAltura() {
         return altura;
     }
 
-    public void setAltura(String altura) {
-        this.altura = altura;
-    }
 }

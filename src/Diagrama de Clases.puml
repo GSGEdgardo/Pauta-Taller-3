@@ -1,0 +1,79 @@
+@startuml
+interface SistemaInventario {
+    + mainMenu(): void
+    + leerCSV(nombreArchivo: String): void
+    + imprimirDetallesInstrumento(instrumento: Instrumento): void
+    + imprimirInstrumentosPorTipo(tipo: String): void
+}
+
+class SistemaInventarioImpl {
+    - listaInstrumento: ListaInstrumento
+    - lector: BufferedReader
+    - linea: String
+    - partes: String[]
+
+    + mainMenu(): void
+    + leerCSV(nombreArchivo: String): void
+    + imprimirDetallesInstrumento(instrumento: Instrumento): void
+    + imprimirInstrumentosPorTipo(tipo: String): void
+}
+
+class ListaInstrumento {
+    - instrumentos: Instrumento[]
+    - cantInstrumento: int
+    - cantMax: int
+    - sistemaInventario: SistemaInventario
+
+    + ListaInstrumento(cantMax: int)
+    + buscar(codigo: String): Instrumento
+    + vender(codigosVenta: String[], contadorVenta: int): void
+    + añadirInsCuerda(insCuerda: InsCuerda): void
+    + añadirInsPercusion(insPercusion: InsPercusion): void
+    + añadirInsViento(insViento: InsViento): void
+    +getInstrumentos(): Instrumento[]
+
+}
+
+class Instrumento {
+    - codigo: String
+    - precio: int
+    - stock: int
+    - instrumento: String
+    - material: String
+
+    + Instrumento(material: String, stock: int, instrumento: String, precio: int, codigo: String)
+    + getMaterial(): String
+    + getStock(): int
+    + setStock(stock: int): void
+    + getInstrumento(): String
+    + getPrecio(): int
+    + getCodigo(): String
+}
+class InsCuerda {
+    - tipoCuerda: String
+    - numeroCuerda: int
+    - tipo: String
+
+    + InsCuerda(material: String, stock: int, instrumento: String, precio: int, codigo: String, tipoCuerda: String, numeroCuerda: int, tipo: String)
+    + getTipoCuerda(): String
+    + getNumeroCuerda(): int
+    + getTipo(): String
+}
+class InsPercusion {
+    - tipoPercusion: String
+    - altura: String
+
+    + InsPercusion(material: String, stock: int, instrumento: String, precio: int, codigo: String, tipoPercusion: String, altura: String)
+    + getTipoPercusion(): String
+    + getAltura(): String
+}
+class InsViento {
+    + InsViento(material: String, stock: int, instrumento: String, precio: int, codigo: String)
+}
+ListaInstrumento "1" *-- "1" SistemaInventarioImpl
+SistemaInventarioImpl <|-- SistemaInventario
+ListaInstrumento "1" *-- "0..*" Instrumento
+InsCuerda --|> Instrumento
+InsPercusion --|> Instrumento
+InsViento --|> Instrumento
+@enduml
