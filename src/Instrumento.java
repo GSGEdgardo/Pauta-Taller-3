@@ -1,9 +1,9 @@
 public class Instrumento {
-    private String material;
+    private String codigo;
+    private int precio;
     private int stock;
     private String instrumento;
-    private int precio;
-    private String codigo;
+    private String material;
 
     public Instrumento(String material, int stock, String instrumento, int precio, String codigo) {
         this.material = material;
