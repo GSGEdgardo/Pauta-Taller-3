@@ -1,4 +1,5 @@
 @startuml
+
 interface SistemaInventario {
     + mainMenu(): void
     + leerCSV(nombreArchivo: String): void

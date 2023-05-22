@@ -1,0 +1,35 @@
+@startuml
+class ListaInstrumento {
+    - instrumentos
+    - cantInstrumento
+    - cantMax
+    - sistemaInventario
+}
+
+class Instrumento {
+    - codigo
+    - precio
+    - stock
+    - instrumento
+    - material
+}
+
+class InsCuerda {
+    - tipoCuerda
+    - numeroCuerda
+    - tipo
+}
+
+class InsPercusion {
+    - tipoPercusion
+    - altura
+}
+
+class InsViento {
+}
+
+ListaInstrumento "1" *-- "0..*" Instrumento
+InsCuerda --|> Instrumento
+InsPercusion --|> Instrumento
+InsViento --|> Instrumento
+@enduml
